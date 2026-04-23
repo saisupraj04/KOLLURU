@@ -20,5 +20,5 @@ jobs:
 
       - name: Run Gitleaks
         run: |
-            ls -l
+          ls -l
           gitleaks detect --no-git --source=. --verbose

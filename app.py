@@ -1,5 +1,4 @@
 # Sample vulnerable file
 
-aws_access_key = "AKIAIOSFODNN7EXAMPLE"
-aws_secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-stripe_key = "REMOVED"
+api_key = "sk_live_9xA7fK29Qw8LmN0pRsTuvWXyZaBcDeFgHiJkLmNoPq"
+password = "MySuperSecretPassword_123456789!"

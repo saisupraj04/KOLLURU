@@ -3,7 +3,6 @@ name: Gitleaks Scan
 on:
   push:
     branches: [ "main" ]
-  pull_request:
 
 jobs:
   scan:
@@ -15,10 +14,10 @@ jobs:
 
       - name: Install Gitleaks
         run: |
-          wget https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64.tar.gz
-          tar -xvzf gitleaks-linux-amd64.tar.gz
+          wget https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz
+          tar -xvzf gitleaks_8.24.3_linux_x64.tar.gz
           sudo mv gitleaks /usr/local/bin/
 
-      - name: Run Gitleaks (Full Scan)
+      - name: Run Gitleaks
         run: |
-          gitleaks detect --no-git --source=. --verbose --report-format=json --report-path=report.json
+          gitleaks detect --no-git --source=. --verbose

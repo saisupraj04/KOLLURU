@@ -20,6 +20,11 @@ jobs:
 
       - name: Run Gitleaks
         run: |
+          echo "===== FILE LIST ====="
           ls -l
+
+          echo "===== README CONTENT ====="
           cat README.md
+
+          echo "===== GITLEAKS SCAN ====="
           gitleaks detect --no-git --source=. --verbose

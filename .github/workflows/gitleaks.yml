@@ -16,4 +16,4 @@ jobs:
       - name: Run Gitleaks
         uses: zricethezav/gitleaks-action@v2
         with:
-          args: detect --source=. --verbose --report-format=json --report-path=report.json
+          args: detect --source=. --verbose --report-format=json --report-path=report.json --log-opts="--all"

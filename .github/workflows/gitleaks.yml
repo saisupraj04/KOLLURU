@@ -1,8 +1,9 @@
-name: Gitleaks Scan
+name: Security Pipeline
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
 
 jobs:
   scan:
@@ -12,19 +13,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 🔥 Step 1: Block image files
+      - name: Block image files
+        run: |
+          echo "Checking for image files..."
+
+          if git ls-files | grep -E '\.(png|jpg|jpeg|gif|svg)$'; then
+            echo "❌ Image files detected! Blocking pipeline."
+            exit 1
+          else
+            echo "✅ No image files found."
+          fi
+
+      # 🔐 Step 2: Install Gitleaks
       - name: Install Gitleaks
         run: |
           wget https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz
           tar -xvzf gitleaks_8.24.3_linux_x64.tar.gz
           sudo mv gitleaks /usr/local/bin/
 
-      - name: Run Gitleaks on app.py only
+      # 🔍 Step 3: Run Gitleaks
+      - name: Run Gitleaks
         run: |
-          echo "===== FILE LIST ====="
-          ls -l
-
-          echo "===== APP.PY CONTENT ====="
-          cat app.py
-
-          echo "===== GITLEAKS SCAN (app.py only) ====="
           gitleaks dir -v app.py

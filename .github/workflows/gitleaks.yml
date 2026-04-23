@@ -21,4 +21,5 @@ jobs:
       - name: Run Gitleaks
         run: |
           ls -l
+          cat README.md
           gitleaks detect --no-git --source=. --verbose

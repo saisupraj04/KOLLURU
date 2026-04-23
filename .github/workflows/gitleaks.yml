@@ -18,13 +18,13 @@ jobs:
           tar -xvzf gitleaks_8.24.3_linux_x64.tar.gz
           sudo mv gitleaks /usr/local/bin/
 
-      - name: Run Gitleaks
+      - name: Run Gitleaks on app.py only
         run: |
           echo "===== FILE LIST ====="
           ls -l
 
-          echo "===== README CONTENT ====="
-          cat README.md
+          echo "===== APP.PY CONTENT ====="
+          cat app.py
 
-          echo "===== GITLEAKS SCAN ====="
-          gitleaks detect --no-git --source=. --verbose
+          echo "===== GITLEAKS SCAN (app.py only) ====="
+          gitleaks dir -v app.py

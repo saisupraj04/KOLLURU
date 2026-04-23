@@ -1,6 +1,5 @@
 # Sample vulnerable file
 
-AWS_ACCESS_KEY = "AKIA1234567890EXAMPLE"
-AWS_SECRET_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-
-print("Hello World")
+aws_access_key = "AKIAIOSFODNN7EXAMPLE"
+aws_secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+stripe_key = "REMOVED"

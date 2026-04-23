@@ -13,7 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run Gitleaks
-        uses: zricethezav/gitleaks-action@v2
-        with:
-          args: detect --source=. --verbose --report-format=json --report-path=report.json --log-opts="--all"
+      - name: Install Gitleaks
+        run: |
+          wget https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64.tar.gz
+          tar -xvzf gitleaks-linux-amd64.tar.gz
+          sudo mv gitleaks /usr/local/bin/
+
+      - name: Run Gitleaks (Full Scan)
+        run: |
+          gitleaks detect --no-git --source=. --verbose --report-format=json --report-path=report.json

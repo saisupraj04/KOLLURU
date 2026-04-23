@@ -1,0 +1,28 @@
+name: Block Image Files
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  block-images:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for image files
+        run: |
+          echo "🔍 Scanning for image files..."
+
+          FILES=$(git ls-files | grep -E '\.(png|jpg|jpeg|gif|svg)$' || true)
+
+          if [ -n "$FILES" ]; then
+            echo "❌ Image files detected:"
+            echo "$FILES"
+            exit 1
+          else
+            echo "✅ No image files found."
+          fi
